@@ -9,11 +9,14 @@ public class Hooks {
     @Before
     public void setup(){
         System.out.println("This is coming from before");
+        //Implicit wait
     }
 
     @After
     public void tearDown(){
         System.out.println("This is coming from after method");
+        //screenshot if the scenario is fail
+        //close driver
     }
 
     @Before("@db")
