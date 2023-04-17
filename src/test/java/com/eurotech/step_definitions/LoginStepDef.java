@@ -1,6 +1,7 @@
 package com.eurotech.step_definitions;
 
 import io.cucumber.java.en.*;
+import org.junit.Assert;
 
 public class LoginStepDef {
 
@@ -15,6 +16,7 @@ public class LoginStepDef {
 
         System.out.println("I enter teacher username and password and click login button");
 
+
     }
     @Then("The user should be able to login")
     public void the_user_should_be_able_to_login() {
@@ -27,5 +29,10 @@ public class LoginStepDef {
 
         System.out.println("I enter student username and password and click login button");
 
+    }
+    @When("The user enters developer credentials")
+    public void the_user_enters_developer_credentials() {
+
+        System.out.println("I enter developer username and password and click button");
     }
 }
