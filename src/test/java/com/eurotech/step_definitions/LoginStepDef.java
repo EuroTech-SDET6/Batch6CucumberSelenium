@@ -43,4 +43,23 @@ public class LoginStepDef {
 
         System.out.println("I enter developer username and password and click button");
     }
+
+
+    @When("The user logs in using {string} and {string} credentials")
+    public void theUserLogsInUsingAndCredentials(String username, String password) {
+
+        System.out.println("username "+username);
+        System.out.println("username "+password);
+
+        loginPage.login(username, password);
+
+
+
+    }
+
+    @Then("The welcome message contains {string}")
+    public void theWelcomeMessageContains(String expectedMessage) {
+        System.out.println("expected Message "+expectedMessage);
+        Assert.assertTrue(dashboardPage.welcomeMessage.getText().contains(expectedMessage));
+    }
 }
