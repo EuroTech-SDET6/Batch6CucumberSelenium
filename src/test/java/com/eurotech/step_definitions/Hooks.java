@@ -1,22 +1,25 @@
 package com.eurotech.step_definitions;
 
+import com.eurotech.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class Hooks {
 
 
     @Before
     public void setup(){
-        System.out.println("This is coming from before");
-        //Implicit wait
+     //   Driver.get().manage().window().maximize();  //optional
+        Driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
     }
 
     @After
     public void tearDown(){
-        System.out.println("This is coming from after method");
-        //screenshot if the scenario is fail
-        //close driver
+
+        Driver.closeDriver();
     }
 
     @Before("@db")

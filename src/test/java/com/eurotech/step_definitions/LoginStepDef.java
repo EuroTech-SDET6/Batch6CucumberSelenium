@@ -1,26 +1,34 @@
 package com.eurotech.step_definitions;
 
+import com.eurotech.pages.DashboardPage;
+import com.eurotech.pages.LoginPage;
+import com.eurotech.utilities.ConfigurationReader;
+import com.eurotech.utilities.Driver;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
 public class LoginStepDef {
 
+    LoginPage loginPage = new LoginPage();
+    DashboardPage dashboardPage = new DashboardPage();
+
     @Given("The user is on the login page")
     public void the_user_is_on_the_login_page() {
 
-        System.out.println("I open the browser and navigate to login page");
+        Driver.get().get(ConfigurationReader.get("url"));
 
     }
     @When("The user enters teacher credentials")
     public void the_user_enters_teacher_credentials() {
 
-        System.out.println("I enter teacher username and password and click login button");
+       loginPage.loginAsTeacher();
 
 
     }
     @Then("The user should be able to login")
     public void the_user_should_be_able_to_login() {
-        System.out.println("I verify that title changed to Dashboard");
+
+        Assert.assertTrue(dashboardPage.welcomeMessage.getText().contains("Welcome"));
 
     }
 
