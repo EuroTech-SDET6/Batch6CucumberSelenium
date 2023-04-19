@@ -56,8 +56,8 @@ public class LoginPage extends BasePage{
     }
 
     public void loginAsTeacher(){
-        String username = ConfigurationReader.get("userTeacher");
-        String password = ConfigurationReader.get("userPassword");
+        String username = ConfigurationReader.get("usernameTeacher");
+        String password = ConfigurationReader.get("passwordTeacher");
         login(username, password);
     }
 
@@ -68,4 +68,9 @@ public class LoginPage extends BasePage{
     }
 
 
+    public void loginAsDeveloper() {
+        String username = ConfigurationReader.get("usernameDeveloper");
+        String password = ConfigurationReader.get("passwordDeveloper");
+        login(username, password);
+    }
 }
