@@ -7,6 +7,8 @@ import com.eurotech.utilities.Driver;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 
+import java.util.Map;
+
 public class LoginStepDef {
 
     LoginPage loginPage = new LoginPage();
@@ -61,6 +63,17 @@ public class LoginStepDef {
     @Then("The welcome message contains {string}")
     public void theWelcomeMessageContains(String expectedMessage) {
         System.out.println("expected Message "+expectedMessage);
+        Assert.assertTrue(dashboardPage.welcomeMessage.getText().contains(expectedMessage));
+    }
+
+    @When("The user logs in using following credentials")
+    public void the_user_logs_in_using_following_credentials(Map<String, String> userCredentials) {
+        System.out.println("user credentials: " + userCredentials);
+        String username = userCredentials.get("username");
+        String password = userCredentials.get("password");
+        loginPage.login(username, password);
+
+        String expectedMessage = userCredentials.get("message");
         Assert.assertTrue(dashboardPage.welcomeMessage.getText().contains(expectedMessage));
     }
 }
