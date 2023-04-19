@@ -16,7 +16,6 @@ Feature: Navigate Menu with parameters
       And   The user navigates to "All Posts" Menu
       Then  The user should be able to see header as "Posts"
 
-    @wip
   Scenario: Navigates My Account Menu
     Given The user is on the login page
     When  The user logs in using "eurotech@gmail.com" and "Test12345!" credentials
