@@ -10,7 +10,7 @@ Feature: Dashboard menu page
       | My Account |
 #    |Contact Us|
 
-  @rerun
+
   Scenario: User should be able to see Dashboard Menu after login
     Given The user is on the login page
 #    When  The user logs in using "eurotech@gmail.com" and "Test12345!" credentials
