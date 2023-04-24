@@ -9,11 +9,12 @@ Feature: Navigate Menu with parameters
     And   The user navigates to "Developers" Menu
     Then  The user should be able to see header as "Filter Profiles by Skill or by Location"
 
-
+ @rerun
   Scenario: Navigates Posts Menu
     And   The user navigates to "All Posts" Menu
     Then  The user should be able to see header as "Posts"
 
+    @rerun
   Scenario: Navigates My Account Menu
     And   The user navigates to "My Account" Menu
     Then  The user should be able to see header as "Dashboard"
