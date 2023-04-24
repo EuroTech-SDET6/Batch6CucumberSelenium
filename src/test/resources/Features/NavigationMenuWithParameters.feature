@@ -9,7 +9,7 @@ Feature: Navigate Menu with parameters
     And   The user navigates to "Developers" Menu
     Then  The user should be able to see header as "Filter Profiles by Skill or by Location"
 
-  @wip
+
   Scenario: Navigates Posts Menu
     And   The user navigates to "All Posts" Menu
     Then  The user should be able to see header as "Posts"
@@ -21,7 +21,7 @@ Feature: Navigate Menu with parameters
 
 
 #    Create a Scenario Outline covering the above 3 scenarios
-  @wip
+
   Scenario Outline: Navigates menu options
     And   The user navigates to "<MenuName>" Menu
     Then  The user should be able to see header as "<Headers>"

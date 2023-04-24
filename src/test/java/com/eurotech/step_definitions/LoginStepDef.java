@@ -78,8 +78,9 @@ public class LoginStepDef {
     }
 
     @Then("The warning message contains {string}")
-    public void theWarningMessageContains(String message) {
-        String validationMessage = loginPage.usernameInput.getAttribute("validationMessage");
-        System.out.println("validationMessage = " + validationMessage);
+    public void theWarningMessageContains(String expectedMessage) {
+
+        String actualMessage= loginPage.getWarningMessage(expectedMessage);
+        Assert.assertEquals(expectedMessage,actualMessage);
     }
 }
