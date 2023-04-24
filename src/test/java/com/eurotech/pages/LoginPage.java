@@ -23,7 +23,7 @@ public class LoginPage extends BasePage{
     @FindBy(id = "loginpage-form-btn")
     public WebElement loginButton;
 
-    @FindBy(xpath = "//div[text()='Invalid Credentials!']")
+    @FindBy(xpath = "//*[contains(text(),'valid')]")
     public WebElement warningMessage;
 
 
@@ -72,5 +72,18 @@ public class LoginPage extends BasePage{
         String username = ConfigurationReader.get("usernameDeveloper");
         String password = ConfigurationReader.get("passwordDeveloper");
         login(username, password);
+    }
+
+    public String getWarningMessage(String expectedErrorMessage){
+        String actualMessage =null;
+        if(expectedErrorMessage.contains("@")){
+            actualMessage = usernameInput.getAttribute("validationMessage");
+        }else if(expectedErrorMessage.contains("characters")){
+            actualMessage =passwordInput.getAttribute("validationMessage");
+        }else {
+            actualMessage = warningMessage.getText();
+        }
+
+        return actualMessage;
     }
 }

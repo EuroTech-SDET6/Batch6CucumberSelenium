@@ -76,4 +76,10 @@ public class LoginStepDef {
         String expectedMessage = userCredentials.get("message");
         Assert.assertTrue(dashboardPage.welcomeMessage.getText().contains(expectedMessage));
     }
+
+    @Then("The warning message contains {string}")
+    public void theWarningMessageContains(String message) {
+        String validationMessage = loginPage.usernameInput.getAttribute("validationMessage");
+        System.out.println("validationMessage = " + validationMessage);
+    }
 }
