@@ -9,7 +9,7 @@ Feature: Navigation Menu
     And  The user navigates to Developers Menu
     Then The user able to see developer text
 
-@rerun
+
     Scenario: Navigates All Post Menu
       Given The user is on the login page
       When The user enters teacher credentials
