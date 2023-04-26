@@ -34,6 +34,7 @@ public class Hooks {
         System.out.println("Connecting Database");
     }
 
+
     @After("@db")
     public void tearDownDB(){
         System.out.println("This is coming from after DB");
