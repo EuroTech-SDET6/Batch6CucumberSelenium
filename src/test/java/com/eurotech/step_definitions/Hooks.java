@@ -30,7 +30,7 @@ public class Hooks {
 
     @Before("@db")
     public void setupDB(){
-        System.out.println("This is coming from before DB");
+        System.out.println("This is coming from before DataBase");
         System.out.println("Connecting Database");
     }
 
