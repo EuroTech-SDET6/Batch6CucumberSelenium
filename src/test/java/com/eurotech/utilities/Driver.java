@@ -70,10 +70,21 @@ public class Driver {
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setCapability("platform", Platform.ANY);
                     try {
-                        driverPool.set(new RemoteWebDriver(new URL("http://3.238.26.132:4444/wd/hub"), chromeOptions));
+                        driverPool.set(new RemoteWebDriver(new URL("http://192.168.1.217:4444/wd/hub"), chromeOptions)); // zeynep - local
+//                        driverPool.set(new RemoteWebDriver(new URL("http://44.204.47.230:4444/wd/hub"), chromeOptions)); // ihsan hoca - virtual machine
                     } catch (MalformedURLException e) {
                         e.printStackTrace();
                     }
+                    break;
+                case "remote_firefox":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setCapability("platform", Platform.ANY);
+                    try {
+                        driverPool.set(new RemoteWebDriver(new URL("http://192.168.1.217:4444/wd/hub"), firefoxOptions)); // zeynep - local
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
         }
         return driverPool.get();
