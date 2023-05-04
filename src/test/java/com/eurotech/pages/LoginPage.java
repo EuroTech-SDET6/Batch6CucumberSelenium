@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
 
+import java.awt.*;
+
 public class LoginPage extends BasePage{
 
 
@@ -53,6 +55,7 @@ public class LoginPage extends BasePage{
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
         loginButton.click();
+        
     }
 
     public void loginAsTeacher(){
