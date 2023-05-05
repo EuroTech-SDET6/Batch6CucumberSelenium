@@ -28,5 +28,8 @@ public class DashboardMenuStepDef {
     }
 
 
-
+    @Then("The user should see the experience added message")
+    public void theUserShouldSeeTheExperienceAddedMessage() {
+        Assert.assertTrue(dashboardPage.experienceAddedMessage.isDisplayed());
+    }
 }
