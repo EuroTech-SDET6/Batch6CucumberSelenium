@@ -3,6 +3,7 @@ package com.eurotech.step_definitions;
 import com.eurotech.pages.DashboardPage;
 import com.eurotech.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.util.List;
@@ -20,5 +21,12 @@ public class DashboardMenuStepDef {
         Assert.assertEquals(expectedList, actualList);
 
     }
+
+    @When("The user clicks {string}")
+    public void theUserClicks(String menuName) {
+        dashboardPage.navigateMenu(menuName);
+    }
+
+
 
 }
