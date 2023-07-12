@@ -3,6 +3,7 @@ package com.eurotech.step_definitions;
 import com.eurotech.pages.DashboardPage;
 import com.eurotech.utilities.BrowserUtils;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 import java.util.List;
@@ -21,4 +22,14 @@ public class DashboardMenuStepDef {
 
     }
 
+    @When("The user clicks {string}")
+    public void theUserClicks(String menuName) {
+        dashboardPage.navigateMenu(menuName);
+    }
+
+
+    @Then("The user should see the experience added message")
+    public void theUserShouldSeeTheExperienceAddedMessage() {
+        Assert.assertTrue(dashboardPage.experienceAddedMessage.isDisplayed());
+    }
 }
