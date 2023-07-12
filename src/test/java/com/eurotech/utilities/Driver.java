@@ -1,6 +1,8 @@
 package com.eurotech.utilities;
 
 
+import io.appium.java_client.remote.MobileBrowserType;
+import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -10,6 +12,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 
@@ -17,16 +20,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Driver {
+
     private Driver() {
     }
-
     // InheritableThreadLocal  --> this is like a container, bag, pool.
     // in this pool we can have separate objects for each thread
     // for each thread, in InheritableThreadLocal we can have separate object for that thread
     // driver class will provide separate webdriver object per thread
     private static InheritableThreadLocal<WebDriver> driverPool = new InheritableThreadLocal<>();
-
-    public static WebDriver get() {
+    public static WebDriver get(){
         //if this thread doesn't have driver - create it and add to pool
         if (driverPool.get() == null) {
 //            if we pass the driver from terminal then use that one
@@ -34,6 +36,7 @@ public class Driver {
             String browser = System.getProperty("browser") != null ? browser = System.getProperty("browser") : ConfigurationReader.get("browser");
             switch (browser) {
                 case "chrome":
+
                     driverPool.set(new ChromeDriver());
                     break;
                 case "chrome-headless":
@@ -69,18 +72,48 @@ public class Driver {
                 case "remote_chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setCapability("platform", Platform.ANY);
-                    try {
-                        driverPool.set(new RemoteWebDriver(new URL("http://3.238.26.132:4444/wd/hub"), chromeOptions));
-                    } catch (MalformedURLException e) {
+
+                    try{
+                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),chromeOptions));
+                        //driverPool.set(new RemoteWebDriver(new URL("http://44.204.47.230:4444/wd/hub"),chromeOptions));
+                    }catch (MalformedURLException e){
                         e.printStackTrace();
                     }
+
+                    break;
+                case "remote_firefox":
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setCapability("platform",Platform.ANY);
+
+                    try{
+                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"),firefoxOptions));
+                        //driverPool.set(new RemoteWebDriver(new URL("http://44.204.47.230:4444/wd/hub"),firefoxOptions));
+                    }catch (MalformedURLException e){
+                        e.printStackTrace();
+                    }
+                    break;
+
+                case "mobile_chrome":
+                    DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+                    desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, Platform.ANDROID);
+                    desiredCapabilities.setVersion("11.0");
+                    desiredCapabilities.setCapability("appium:deviceName","Pixel_2");
+                    desiredCapabilities.setCapability(MobileCapabilityType.BROWSER_NAME, MobileBrowserType.CHROME);
+
+
+                    try{
+                        driverPool.set(new RemoteWebDriver(new URL("http://localhost:4723/wd/hub"),desiredCapabilities));
+                    }catch (MalformedURLException e){
+                        e.printStackTrace();
+                    }
+
             }
         }
         return driverPool.get();
     }
-
     public static void closeDriver() {
         driverPool.get().quit();
         driverPool.remove();
     }
+
 }

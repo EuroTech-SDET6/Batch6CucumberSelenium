@@ -1,5 +1,6 @@
 package com.eurotech.pages;
 
+import com.eurotech.utilities.BrowserUtils;
 import com.eurotech.utilities.ConfigurationReader;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
@@ -52,7 +53,8 @@ public class LoginPage extends BasePage{
         iUnderstandButton.click();
         usernameInput.sendKeys(username);
         passwordInput.sendKeys(password);
-        loginButton.click();
+        BrowserUtils.waitFor(2);
+       BrowserUtils.clickWithJS(loginButton);
     }
 
     public void loginAsTeacher(){
